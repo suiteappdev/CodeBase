@@ -1,0 +1,125 @@
+body{
+	background-color: white;
+	background-image: url('/assets/images/pattern.jpg');
+	background-repeat: repeat;
+	overflow-x : hidden;
+}
+.ui.basic.table td{
+	padding: 0.4em 0.5em!important;
+}
+
+.form-heading{
+	background-color: rgba(249, 249, 249, 0.3);
+}
+
+.colset-1{
+	width:100%;
+	float: left;
+}
+
+.splash-1{
+	width: 100%;
+	height: 400px;
+	background-image: url('/images/splash-1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0px -70px;
+}
+.splash-2{
+	width: 100%;
+	height: 400px;
+	background-image: url('/images/splash-2.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0px -70px;
+}
+
+.splash-3{
+	width: 100%;
+	height: 400px;
+	background-image: url('/images/splash-3.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0px -70px;
+}
+
+.sliderWrap{
+	width: 100%;
+	height: 400px;
+	position: relative;
+}
+
+.splashDescription{
+	position: relative;
+	bottom: 10px;
+	left: 10px;
+	float: left;
+	display: inline;
+	top: 70%;
+}
+
+.splashDescription .header{
+	color:white;
+	margin-bottom: 2px;
+	display: inline-block;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 5px;
+}
+
+.splashDescription p{
+	color:whitesmoke;
+	padding: 3px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.authBackground{
+	background-image: url(/images/auth_background.jpg);
+	background-size: cover;
+}
+
+.login-form{
+	background-color: rgba(255, 255, 255, 0.1)!important;
+}
+
+.login-form  h3{
+	border-bottom: 2px solid rgb(218, 175, 8)!important;
+	border-bottom-style: dotted!important;
+}
+
+/* header */
+.username{
+	display: inline-block;
+	margin: 0px;
+	font-size: smaller;
+}
+
+.label-darkred{
+	display: inline-block!important;
+	padding: 3px;
+	color: white!important;
+	border-radius: 3px;
+	background-color : #F24C27;
+}
+
+#user-block{
+	text-align: right!important;
+}
+
+#user-info{
+	text-align: right!important;
+}
+
+#notification-block{
+	text-align: left;
+}
+
+@media only screen and (max-width: 767px){
+	#user-info{
+		display: none!important;
+	}
+	
+	#notification-block{
+		text-align:center;
+		width: 100%!important;
+	}
+}

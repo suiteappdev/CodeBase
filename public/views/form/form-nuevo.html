@@ -1,0 +1,52 @@
+  <div class="column">
+    <div>
+      <form ng-submit="submitForm()" class="segment">
+          <div class="ui inverted form">
+            <div class="ui info message">
+              <div class="header">We had some issues</div>
+            </div>
+            <div class="three ui fluid">
+              <div class="field">
+                <label class="label-darkred">Derecho</label>
+                <input type="text" name="txtDerecho" placeholder="Derecho" ng-model="formData.derecho">
+              </div>
+              <div class="field">
+                <label class="label-darkred">Descripcion</label>
+                <textarea type="text" name="txtDescripcion" placeholder="Descripcion" ng-model="formData.descripcion"></textarea>
+              </div>
+              <div class="field">
+                <myselect selected="formData.estado" data="estados"></myselect>
+              </div>
+              <div class="field">
+                <button class="ui darkred submit button">Crear</button>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+</div>
+<div class="column">
+  <table class="ui very basic table">
+    <thead>
+      <tr>
+        <th><i class="legal icon"></i>Derecho</th>
+        <th><i class="cube icon"></i>Estado</th>
+        <th><i class="edit icon"></i>Edición</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="derecho in derechos">
+        <td>{{derecho.derecho}}</td>
+        <td>{{derecho.estado['descripcion']}}</td>
+        <td>
+          <div ng-click="removeRow(derecho._id)" class="ui darkred icon button" style="padding:0.4em;">
+              <i class="trash icon"></i>
+          </div>
+          <div ng-click="editRow(derecho._id)" class="ui teal icon button" style="padding:0.4em;">
+              <i class="edit icon"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

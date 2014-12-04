@@ -1,0 +1,12 @@
+<footer>
+	<div class="ui stackable column grid">
+		<div class="column">
+			<p style="text-align:center;">RTR ABOGADOS 2014 - 2015</p>
+		</div>
+	</div>
+</footer>
+<% if(jsfiles){ %>
+	<% for(file in jsfiles){ %>
+		<script type="text/javascript" src=<%= jsfiles[file] %> ></script>	
+	<% } %>
+<% }%>

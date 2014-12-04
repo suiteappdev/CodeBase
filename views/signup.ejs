@@ -1,0 +1,62 @@
+<html>
+<head>
+	  <% include partials/head.ejs %>
+</head>
+<body>
+  <header>
+    <% include partials/header.ejs %>
+  </header>
+	<div class="ui two column stackable grid authBackground">
+		  <div class="column">
+		    <div class="ui fluid form segment login-form">
+		      <h3 class="ui header"><i class="user icon" style="color:white"></i>Entrar</h3>
+					<form method="post" action="/login">
+						<div class="field">
+							<label>Correo electronico</label>
+							<input placeholder="Correo electronico" name="email" type="text">
+						</div>
+						<div class="field">
+							<label>Password</label>
+							<input type="password" placeholder="password" name="password">
+						</div>
+						<input type="submit" class="ui darkred submit button" value="INGRESAR"></input>
+					</form>
+		    </div>
+		  </div>
+	  <div class="column">
+	    <div class="ui fluid form segment">
+	      <h3 class="ui header"><i class="add sign box icon"></i>Registro</h3>
+	      <form method="post" action="/signup">
+		      <div class="two fields">
+		        <div class="field">
+		          <label>Primer Nombre</label>
+		          <input placeholder="Primer Nombre" name="txtFirstName"type="text">
+		        </div>
+		        <div class="field">
+		          <label>Segundo Nombre</label>
+		          <input placeholder="Segundo Nombre" name="txtSecondName"type="text">
+		        </div>
+		      </div>
+		      <div class="field">
+		        <label>Email</label>
+		        <input placeholder="Email" type="text" name="txtEmail">
+		      </div>
+		      <div class="field">
+		        <label>Password</label>
+		        <input type="password" placeholder="password" name="txtPassword">
+		      </div>
+		      <div class="inline field">
+		        <div class="ui checkbox">
+		          <input type="checkbox" id="terms">
+		          <label for="terms">Acepto todos los terminos y condiciones.</label>
+		        </div>
+		      </div>
+	     	  <input type="submit" class="ui darkred submit button" value="ENVIAR"></input>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+<% include partials/footer.ejs %>
+</body>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div class="ui menu two column grid stackable">
+  <% if(user != undefined){ %>
+    <div id="notification-block" class="ui column grid">
+      <a class="item"><i class="icon question"></i><div class="floating ui red label" style="font-size:0.6em;">22</div></a>
+      <a class="item"><i class="icon payment"></i></a>
+      <a class="item"><i class="icon users"></i></a>
+      <a class="item"><i class="popover icon bell outline" data-position="right center" data-variation="large"></i></a>
+    </div>
+    <div id="user-info" class="ui column">
+    <a href="/" class="item"><i class="home icon"></i>Inicio</a>
+    		<p class="username"><%= user.username %></p>
+        <% if(user.photo){ %>
+          <img class="ui avatar image" src="<%= user.photo %>">
+        <% }else { %>
+            <i class="user basic icon"></i>
+        <% } %>
+        <a href="/dashboard" class="ui darkred button"><i class="dashboard icon"></i>administración</a>
+      	<a href="/logout" class="ui darkred button">Salir</a>
+    </div>
+  <%  }else { %>
+    <div id="notification-block" class="ui column grid">
+    </div>
+    <div id="user-block" class="ui column">
+    	  <a href="/QuienesSomos" class="item">Quienes somos</a>
+        <a href="/Servicios" class="item">Servicios</a>
+        <a href="#" class="item">docs</a>
+    		<a href="/signup" class="ui button darkred">Registrarse</a>
+      	<div class="ui darkred button">Entrar</div>
+    </div>
+  <%  } %>
+</div>
