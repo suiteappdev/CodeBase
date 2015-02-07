@@ -1,0 +1,68 @@
+
+  <div class="column">
+  <h4 class="ui dividing header">Estados de clientes</h4>
+    <div>
+      <form ng-submit="submitForm()" class="segment">
+          <div class="ui inverted dimmer" ng-class="loader ? 'active' : '' ">
+            <div class="ui text loader">porfavor espere...</div>
+          </div>
+          <p></p>
+          <div class="ui inverted form">
+            <div class="ui info message">
+              <div class="header">We had some issues</div>
+            </div>
+            <div class="four ui fluid">
+              <div class="field">
+                <label class="label">Estado</label>
+                <input type="text" name="txtEstado" placeholder="Estado" ng-model="formData.estado">
+              </div>
+              <div class="field">
+                <label class="label">Descripcion</label>
+                <textarea type="text" name="txtDescripcion" placeholder="Descripcion" ng-model="formData.descripcion"></textarea>
+              </div>
+              <div class="field">
+                <button class="ui darkred submit button" ng-class="CmdSave ? '' : 'disabled' "><i class="send outline icon"></i>Crear</button>
+                <div class="ui button" ng-class="CmdUpdate ? 'positive' : 'disabled' " ng-click="update()">
+                  <i class="refresh icon"></i>
+                  Actualizar
+                </div>
+                <div class="ui blue button" ng-click="new()">
+                  <i class="add circle icon"></i>
+                  Nuevo
+                </div>
+              </div>
+            </div>
+          </div>
+          <pre>{{formData}}</pre>
+      </form>
+    </div>
+</div>
+<div class="column">
+<div class="ui transparent input fluid">
+  <input type="text" ng-model="txtSearch.$" placeholder="Escriba un termino de busqueda...">
+</div>
+  <table class="ui very basic table" style="table-layout:fixed">
+    <thead>
+      <tr>
+        <th>Estado</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="estado in estadoClientes | filter:txtSearch" ng-class="{selected: estado._id === idSelectedRow}" >
+        <td>{{estado.estado}}</td>
+        <td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" title="{{estado.descripcion}}">{{estado.descripcion}}</td>
+        <td>
+          <div ng-click="removeRow(estado._id)" class="ui darkred icon button" style="padding:0.4em;">
+              <i class="trash icon"></i>
+          </div>
+          <div ng-click="editRow(estado)" class="ui teal icon button" style="padding:0.4em;">
+              <i class="edit icon"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<myconfirm show="showModal" title="Eliminar Item" message="¿ desea eliminar este estado ?"></myconfirm>

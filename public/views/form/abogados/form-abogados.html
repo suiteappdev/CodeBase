@@ -1,0 +1,146 @@
+  <div class="column">
+    <message title="Email en uso" message="este correo ya se encuentra en uso." show="showMessage" type="warning"></message>
+    <div>
+      <form ng-submit="submitForm()" class="segment">
+          <div class="ui inverted dimmer" ng-class="loader ? 'active' : '' ">
+            <div class="ui text loader">porfavor espere...</div>
+          </div>
+          <p></p>
+          <div class="ui inverted form">
+            <div class="ui info message">
+              <div class="header">We had some issues</div>
+            </div>
+            <div class="field">
+              <img class="ui avatar image" src="{{formData.imageData}}">
+            </div>
+            <div class="field">
+                <cropper class="ui button darkred" preview=".thumb" image="formData.imageData"></cropper>
+            </div>
+            <div class="four ui fluid">
+              <div class="three fields">
+                  <div class="field">
+                    <label class="label">Nombres</label>
+                    <input type="text" name="txtEstado" placeholder="Nombres" ng-model="formData.firstName">
+                  </div>
+                  <div class="field">
+                    <label class="label">Apellidos</label>
+                    <input type="text" name="txtEstado" placeholder="Apellidos" ng-model="formData.secondName">
+                  </div>
+                  <div class="field">
+                    <label class="label">Sexo</label>
+                      <mydropdownselect coltext="genero" placeholder="Elija el sexo" colkey="_id" selected="formData.gender" async="genero" ></mydropdownselect>
+                  </div>
+              </div>
+              <div class="three fields">
+                  <div class="field">
+                    <label class="label">Usuario</label>
+                     <div class="ui icon input">
+                        <input type="text" placeholder="Usuario" ng-model="formData.username">
+                        <i class="user icon"></i>
+                     </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <input type="text" name="txtEstado" placeholder="Email" ng-model="formData.email">
+                  </div>
+                  <div class="field">
+                    <label class="label">Password</label>
+                    <div class="ui icon input">
+                        <input type="password" placeholder="Password" ng-model="formData.password">
+                        <i class="lock icon"></i>
+                    </div>
+                  </div>
+              </div>
+              <div class="field">
+                <label class="label">Biografia</label>
+                <textarea ng-model="formData.biography"></textarea>
+              </div>
+              <div class="two fields">
+                <div class="field">
+                  <label class="label">Numero de Telefono</label>
+                  <div class="ui icon input">
+                      <input type="text" placeholder="(xxx)(xxx)(xxxxx)" ng-model="formData.phone">
+                      <i class="mobile icon"></i>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Fecha de Nacimiento:</label>
+                  <div class="input">
+                      <input class="date" type="date" name="date"  ng-model="formData.birth">
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui green label" ng-repeat="derecho in formData.derechosStack">
+                  {{derecho.text}}
+                  <i class="delete icon" ng-click="popDerechoOnStack(derecho.val)"></i>
+                </div>
+              </div>
+              <div class="two fields">
+                  <div class="field">
+                      <mydropdownselect coltext="derecho" placeholder="Mis derechos" colkey="_id" selected="formData.derecho" async="derechos" ></mydropdownselect>
+                  </div>
+                  <div class="field">
+                    <div class="fluid ui button darkred" ng-click="pushDerechoOnStack(formData.derecho)" ><i class="add icon"></i>Agregar derecho</div>
+                  </div>
+              </div>
+              <div class="field">
+                <button class="ui darkred submit button" ng-class="CmdSave ? '' : 'disabled' "><i class="send outline icon"></i>Crear</button>
+                <div class="ui button" ng-class="CmdUpdate ? 'positive' : 'disabled' " ng-click="update()">
+                  <i class="refresh icon"></i>
+                  Actualizar
+                </div>
+                <div class="ui blue button" ng-click="new()">
+                  <i class="add circle icon"></i>
+                  Nuevo
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+      <pre>{{formData}}</pre>
+    </div>
+</div>
+<div class="column stackable grid">
+<div class="ui grid">
+    <div class="four wide column">
+      <div class="ui left icon input mini">
+        <input type="text" ng-model="txtSearch.$" placeholder="buscar usuario.">
+        <i class="users icon"></i>
+      </div>
+    </div>
+    <div class="four wide column"></div>
+    <div class="four wide column"></div>
+    <div class="four wide column"></div>
+</div>
+  <table class="ui very basic table" style="table-layout:fixed">
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+        <th>Usuario</th>
+        <th><i class="angle down icon"></i>Eliminar</th>
+        <th><i class="angle down icon"></i>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="abogado in abogados | filter:txtSearch" ng-class="{selected: tipo._id === idSelectedRow}" >
+        <td>{{abogado.local['firstName']}}</td>
+        <td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" title="{{abogado.local['secondName']}}">{{abogado.local['secondName']}}</td>
+        <td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" title="{{abogado.local['email']}}">{{abogado.local['email']}}</td>
+        <td>{{abogado.local['username']}}</td>
+        <td>
+          <div ng-click="removeRow(abogado._id)" class="ui darkred icon button fluid" style="padding:0.4em;">
+              <i class="trash icon"></i>
+          </div>
+        </td>
+        <td>
+          <div ng-click="editRow(abogado)" class="ui teal icon button fluid" style="padding:0.4em;">
+              <i class="edit icon"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

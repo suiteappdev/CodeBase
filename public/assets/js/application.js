@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	$('.dropdown').dropdown();
+	$('.ui.checkbox').checkbox();
+	
 	$('.popover').popup(
 	    {
 	        content:'<div class="ui small feed">' +

@@ -3,13 +3,10 @@
 	  <% include partials/head.ejs %>
 </head>
 <body>
-  <header>
-    <% include partials/header.ejs %>
-  </header>
-	<div class="ui two column stackable grid authBackground">
+<% include partials/header.ejs %>
+<div class="ui two column stackable segment grid authBackground">
 		  <div class="column">
-		    <div class="ui fluid form segment login-form">
-		      <h3 class="ui header"><i class="user icon" style="color:white"></i>Entrar</h3>
+		    <div class="ui fluid form attached segment login-form">
 					<form method="post" action="/login">
 						<div class="field">
 							<label>Correo electronico</label>
@@ -19,13 +16,20 @@
 							<label>Password</label>
 							<input type="password" placeholder="password" name="password">
 						</div>
-						<input type="submit" class="ui darkred submit button" value="INGRESAR"></input>
+						<div class="two fields">
+							<div class="field">
+								<input type="submit" class="ui darkred submit button fluid" value="INGRESAR"></input>
+							</div>
+						</div>
 					</form>
 		    </div>
+			<div class="ui bottom attached warning message">
+			  <i class="icon help"></i>
+			  Olvidaste tu contraseña ? <a href="/forgot">Recordar</a>
+			</div>
 		  </div>
 	  <div class="column">
 	    <div class="ui fluid form segment">
-	      <h3 class="ui header"><i class="add sign box icon"></i>Registro</h3>
 	      <form method="post" action="/signup">
 		      <div class="two fields">
 		        <div class="field">

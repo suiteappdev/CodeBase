@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="es" >
-<head>
-  <% include partials/head.ejs %>
-</head>
+<% include partials/head.ejs %>
 <body class="container" ng-app="app">
-<header class="ui one column stackable grid">
-  <% include partials/header.ejs %>
-</header>
-
+<% include partials/header.ejs %>
 <% if(user.role.Administrator) { %>
 	<!--desktop menu-->
 	<div class="ui one column stackable grid computer only">
-	<div class="mnuMain ui column" ng-controller="navigationController">
-		<div class="ui inverted menu">
+	<div class="mnuMain ui column" style="padding-top:0px;" ng-controller="navigationController">
+		<div class="ui inverted menu darkred">
 			  <div class="ui dropdown item"><i class="legal icon"></i>
 			      Derechos 
 			      <div class="menu">
@@ -21,19 +16,19 @@
 			        <a href="#/pagos"  class="item"><i class="payment icon"></i>Pagos</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="users icon"></i>
-			      Clientes 
+			  <div class="ui dropdown item"><i class="suitcase icon"></i>
+			      Asesorias 
 			      <div class="menu">
-			      	<a href="#/derechos" class="item"><i class="add icon"></i>Nuevo</a>
-			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
-			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/departamento" class="item"><i class="payment icon"></i>Pagos</a>
+			      	<a href="#/asesoria"  class="item"><i class="add icon"></i>Crear</a>
+			        <a href="#/estadoAsesorias" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="male icon"></i>
+			  <div class="ui dropdown item"><i class="users icon"></i>
 			      Abogados 
 			      <div class="menu">
-			        <a href="#/pais" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/abogado" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/tipoCliente" class="item"><i class="cubes icon"></i>Tipos</a>
+			        <a href="#/estadoCliente" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
 			  <a class="item right darkblue">
@@ -46,7 +41,7 @@
 	<!--tablet menu-->
 	<div class="ui one column stackable grid tablet only">
 	<div class="mnuMain ui column" ng-controller="navigationController">
-		<div class="ui inverted menu">
+		<div class="ui inverted menu darkred">
 			  <div class="ui dropdown item"><i class="legal icon"></i>
 			      Derechos 
 			      <div class="menu">
@@ -55,19 +50,19 @@
 			        <a href="#/pagos"  class="item"><i class="payment icon"></i>Pagos</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="users icon"></i>
-			      Clientes 
+			  <div class="ui dropdown item"><i class="suitcase icon"></i>
+			      Asesorias 
 			      <div class="menu">
-			      	<a href="#/derechos" class="item"><i class="add icon"></i>Nuevo</a>
-			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
-			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/departamento" class="item"><i class="payment icon"></i>Pagos</a>
+			      	<a href="#/asesoria"  class="item"><i class="add icon"></i>Crear</a>
+			        <a href="#/estados" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="male icon"></i>
+			  <div class="ui dropdown item"><i class="users icon"></i>
 			      Abogados 
 			      <div class="menu">
-			        <a href="#/pais" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/usuario" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
+			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
 			  <a class="item right darkblue">
@@ -80,7 +75,7 @@
 	<!--mobile menu-->
 	<div class="ui one column stackable grid mobile only">
 	<div class="mnuMain ui column" ng-controller="navigationController">
-		<div class="ui inverted menu">
+		<div class="ui inverted menu darkred">
 			  <div class="ui dropdown item"><i class="legal icon"></i>
 			      Derechos 
 			      <div class="menu">
@@ -89,19 +84,19 @@
 			        <a href="#/pagos"  class="item"><i class="payment icon"></i>Pagos</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="users icon"></i>
-			      Clientes 
+			  <div class="ui dropdown item"><i class="suitcase icon"></i>
+			      Asesorias 
 			      <div class="menu">
-			      	<a href="#/derechos" class="item"><i class="add icon"></i>Nuevo</a>
-			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
-			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/departamento" class="item"><i class="payment icon"></i>Pagos</a>
+			      	<a href="#/asesoria"  class="item"><i class="add icon"></i>Crear</a>
+			        <a href="#/estados" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
-			  <div class="ui dropdown item"><i class="male icon"></i>
+			  <div class="ui dropdown item"><i class="users icon"></i>
 			      Abogados 
 			      <div class="menu">
-			        <a href="#/pais" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/usuario" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
+			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
 			  <a class="item right darkblue">
@@ -138,22 +133,14 @@
 			      <div class="menu">
 			      	<a href="#/nuevo"  class="item"><i class="add icon"></i>Nuevo</a>
 			        <a href="#/estados" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/pagos"  class="item"><i class="payment icon"></i>Pagos</a>
 			      </div>
 				</div>
 			  <div class="ui dropdown item"><i class="users icon"></i>
-			      Clientes 
-			      <div class="menu">
-			      	<a href="#/derechos" class="item"><i class="add icon"></i>Nuevo</a>
-			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
-			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/departamento" class="item"><i class="payment icon"></i>Pagos</a>
-			      </div>
-				</div>
-			  <div class="ui dropdown item"><i class="male icon"></i>
 			      Abogados 
 			      <div class="menu">
-			        <a href="#/pais" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/usuario" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
+			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
 			  <a class="item right darkblue">
@@ -176,18 +163,11 @@
 			      </div>
 				</div>
 			  <div class="ui dropdown item"><i class="users icon"></i>
-			      Clientes 
-			      <div class="menu">
-			      	<a href="#/derechos" class="item"><i class="add icon"></i>Nuevo</a>
-			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
-			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
-			        <a href="#/departamento" class="item"><i class="payment icon"></i>Pagos</a>
-			      </div>
-				</div>
-			  <div class="ui dropdown item"><i class="male icon"></i>
 			      Abogados 
 			      <div class="menu">
-			        <a href="#/pais" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/usuario" class="item"><i class="add icon"></i>Nuevo</a>
+			      	<a href="#/tipos" class="item"><i class="cubes icon"></i>Tipos</a>
+			        <a href="#/pais" class="item"><i class="info icon"></i>Estados</a>
 			      </div>
 				</div>
 			  <a class="item right darkblue">
@@ -241,22 +221,17 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="ui one column stackable grid">
 		<div class="column">
 			<div class="fluid ui button"><i class="ui send outline icon"></i>Realizar Consulta</div>
 		</div>
 	</div>
 <% } %>
-
 <div class="ui two column stackable grid" ng-view style="padding:10px;">
 </div>
 <footer>
   <% include partials/footer.ejs %>
 </footer>
-
-		
-
-
 </body>
 </html>

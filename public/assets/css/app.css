@@ -8,8 +8,21 @@ body{
 	padding: 0.4em 0.5em!important;
 }
 
+table tr.selected{
+	background-color :rgba(255,255,160,.4);
+}
+
+table tbody tr:hover{
+	background-color : rgba(255,255,160, .9);
+	cursor: pointer;
+}
+
 .form-heading{
 	background-color: rgba(249, 249, 249, 0.3);
+}
+
+.green{
+	background-color:#81BB00!important;
 }
 
 .colset-1{
@@ -93,12 +106,8 @@ body{
 	font-size: smaller;
 }
 
-.label-darkred{
-	display: inline-block!important;
-	padding: 3px;
-	color: white!important;
-	border-radius: 3px;
-	background-color : #F24C27;
+.label{
+	color : black!important;
 }
 
 #user-block{
@@ -111,6 +120,21 @@ body{
 
 #notification-block{
 	text-align: left;
+}
+
+.presentation{
+	background-image: url(/assets/images/presentation.jpg);
+	width: 100%;
+	height: 100%;
+	margin: 0px!important;
+	box-sizing: border-box;
+	background-size: cover	
+}
+
+.shadow{
+	-webkit-box-shadow: 0px 0.5px 5px 0px rgba(51,50,51,1)!important;
+	-moz-box-shadow: 0px 0.5px 5px 0px rgba(51,50,51,1)!important;
+	box-shadow: 0px 0.5px 5px 0px rgba(51,50,51,1)!important;
 }
 
 @media only screen and (max-width: 767px){

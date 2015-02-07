@@ -1,15 +1,35 @@
-angular.module('derechoModule', ['configurationModule', 'estadoModule', 'modelModule', 'selectModule'])
-       .controller('derechoFormController', function($scope, $http, $myConfiguration, $model, $estadosService){
-              $scope.formData = {};
-              $scope.formData.estado = {};
+angular.module('derechoModule', ['configurationModule', 'estadoModule', 'modelModule', 'selectModule', 'confirmModule', 'formModule'])
+       .controller('derechoFormController', function($scope, $http, $timeout, $route,  $http, $myConfiguration, $model, $estadosService){
+              $scope.idSelectedRow = null;
               
-              $scope.refreshEstados = function( ){
-                      $estadosService.success(function(data, status){
-                            $scope.estados = data;
-                     });
+              $scope.setSelectedRow = function (idSelected) {
+                 $scope.idSelectedRow = idSelected;
+              };
+
+              $scope.CmdSave = true;
+              $scope.CmdUpdate = false;
+              $scope.loader = false;
+              $scope.estados = [];
+              $scope.formData = {};
+              $scope.formData.estado = {
+                     val : null,
+                     text : null,
+                     tag : null
+              };
+              
+                            
+              $scope.clearselection = function(){
+                     $scope.CmdSave = true;
+                     $scope.CmdUpdate = false;
+                     $scope.formData.derecho = '';
+                     $scope.formData.descripcion = '';
               }
               
-              $scope.refreshEstados();
+              $scope.clearselection();
+
+              $estadosService.success(function(data){
+                     $scope.estados = data;
+              });
               
               $model.CRUD.Select('derechos').success(function(data, status){
                      $scope.derechos = data;      
@@ -33,20 +53,58 @@ angular.module('derechoModule', ['configurationModule', 'estadoModule', 'modelMo
               }
               
               $scope.editRow = function(row){
-                     alert('edit');
+                     if(!row){
+                            return;
+                     }
+
+                     $scope.setSelectedRow(row._id);
+                     $scope.CmdSave = false;
+                     $scope.CmdUpdate = true;
+                     
+                     $scope.formData._id = row._id;
+                     $scope.formData.derecho = row.derecho;
+                     $scope.formData.descripcion = row.descripcion;
+                     $scope.formData.estado ={
+                            val    : row.estado._id,
+                            text   : row.estado.descripcion,
+                            tag    :row.estado.tag
+                     }
+                     
+              }
+              
+              $scope.update = function(){
+                     $scope.loader = true;
+                     $model.CRUD.Update({
+                            resource : 'derechos/',
+                            id       : $scope.formData._id,
+                            data : $scope.formData     
+                     }).success(function(data, status){
+                            $model.CRUD.Select('derechos').success(function(data, status){
+                                   $scope.derechos = data; 
+                                   $scope.loader = false;
+                                   $scope.clearselection();
+                            });
+                     });
               }
               
               $scope.removeRow = function(id){
-                     $model.CRUD.Delete({
-                            resource : 'derechos',
-                            id:id
-                     }).success(function(data, status){
-                            angular.forEach($scope.derechos, function(derecho, index){
-                                   if(derecho._id == id){
-                                          $scope.derechos.splice(index, 1);
-                                   }
-                            });
-                     });
+                     $('.basic.test.modal').modal({
+                            onDeny : function(){
+                                   
+                            },
+                            onApprove : function(){
+                                   $model.CRUD.Delete({
+                                          resource : 'derechos',
+                                          id:id
+                                   }).success(function(data, status){
+                                          angular.forEach($scope.derechos, function(derecho, index){
+                                                 if(derecho._id == id){
+                                                        $scope.derechos.splice(index, 1);
+                                                 }
+                                          });
+                                   });
+                            }
+                     }).modal('show');
               }
               
        });

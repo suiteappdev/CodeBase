@@ -6,12 +6,16 @@ var UserSchema = new Schema({
 	local            : {
 		firstName    : String,
 		secondName 	 : String,
-        username     : String,
+		gender       : Object,
+		phone        : String,
+		image        : Buffer,
+		derechos     : Array,
+		birth        : Date,
+        username     : {type: String , unique : true},
         role         : Object,
-        email        : String,
+        email        : {type : String, unique : true},
         password     : String,
         created      :{type: Date, default: Date.now} 
-
     },
 
 	facebook         : {

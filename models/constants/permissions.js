@@ -24,10 +24,15 @@ var permissions = {
             code : 300,
             description : 'all privileges for setup and other jobs'
         } 
+    },
+    AbogadoType : {
+        Abogado : {
+            allowed :true,
+            alias : 'abogados',
+            code : 400,
+            description : 'tipo de usuario abogado'
+        } 
     }
-    
-
-
 }
 
 module.exports = permissions;

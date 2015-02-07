@@ -1,0 +1,27 @@
+<html>
+<head>
+	  <% include partials/head.ejs %>
+</head>
+<body>
+  <header>
+    <% include partials/header.ejs %>
+  </header>
+	<div class="ui column stackable grid">
+		  <div class="column">
+		    <div class="ui fluid form segment login-form">
+					<form method="post" action="/forgot">
+						<div class="field">
+							<label>Correo electronico</label>
+							<input placeholder="Correo electronico" name="email" type="text">
+						</div>
+						<div class="field">
+							<input type="submit" class="ui darkred submit button fluid" value="Recuperar"></input>
+						</div>
+					</form>
+		    </div>
+		  </div>
+	</div>
+<% include partials/footer.ejs %>
+</body>
+</body>
+</html>

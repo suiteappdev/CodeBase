@@ -1,23 +1,39 @@
-angular.module('estadoModule', ['configurationModule', 'modelModule', 'selectModule'])
+angular.module('estadoModule', ['configurationModule', 'modelModule', 'selectModule', 'formModule'])
        .factory('$estadosService', function($model){
 
               return $model.CRUD.Select('estados');
 
        })
-       .controller('estadoFormController', function($scope, $http, $myConfiguration, $model){
+       .controller('estadoFormController', function($scope, $timeout, $http, $myConfiguration, $model){
+              $scope.idSelectedRow = null;
+              
+              $scope.setSelectedRow = function (idSelected) {
+                 $scope.idSelectedRow = idSelected;
+              };
+              
+              $scope.CmdSave = true;
+              $scope.CmdUpdate = false;
+              $scope.loader = false;
+              
               $scope.formData = {};
               
               $model.CRUD.Select('estados').success(function(data, status){
-                     $scope.estados = data;      
+                     $scope.estadosCollection = data;      
               });
               
+              
               $scope.submitForm = function(){
+                     $scope.loader = true;
+                     
                      $model.CRUD.Create({
                             resource : 'estados/',
                             data     : $scope.formData
                      }).success(function(data, status){
                             if(data){
-                                   $scope.addRow(data);
+                                   $timeout(function(){
+                                          $scope.loader = false
+                                          $scope.addRow(data);
+                                   }, 3000);
                             }
                      });
               }
@@ -31,14 +47,25 @@ angular.module('estadoModule', ['configurationModule', 'modelModule', 'selectMod
               }
               
               $scope.addRow  = function(data){
-                     $scope.estados.push(data);
+                     $scope.estadosCollection.push(data);
                      $scope.formData.descripcion = '';
                      $scope.formData.estado = '';
                      $scope.formData.tag = '';
               }
               
               $scope.editRow = function(row){
-                     alert('edit');
+                     if(!row){
+                            return;
+                     }
+                     
+                     $scope.setSelectedRow(row._id);
+                     $scope.CmdSave = false;
+                     $scope.CmdUpdate = true;
+                     $scope.formData = angular.copy(row);
+              }
+              
+              $scope.update = function(){
+
               }
               
               $scope.removeRow = function(id){
@@ -46,9 +73,9 @@ angular.module('estadoModule', ['configurationModule', 'modelModule', 'selectMod
                             resource : 'estados',
                             id:id
                      }).success(function(data, status){
-                            angular.forEach($scope.estados, function(estado, index){
+                            angular.forEach($scope.estadosCollection, function(estado, index){
                                    if(estado._id == id){
-                                          $scope.estados.splice(index, 1);
+                                          $scope.estadosCollection.splice(index, 1);
                                    }
                             });
                      });

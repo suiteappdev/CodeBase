@@ -1,0 +1,64 @@
+  <div class="column" >
+    <div>
+      <form ng-submit="submitForm()" class="segment">
+          <div class="ui inverted dimmer" ng-class="loader ? 'active' : '' ">
+            <div class="ui text loader">Actualizando...porfavor espere</div>
+          </div> 
+          <div class="ui inverted form">
+            <div class="ui info message">
+              <div class="header">We had some issues</div>
+            </div>
+            <div class="three ui fluid">
+              <div class="field">
+                <label class="label">Derecho</label>
+                <input type="text" name="txtDerecho" placeholder="Derecho" ng-model="formData.derecho">
+              </div>
+              <div class="field">
+                <label class="label">Descripcion</label>
+                <textarea type="text" name="txtDescripcion" placeholder="Descripcion" ng-model="formData.descripcion"></textarea>
+              </div>
+              <div class="field">
+                <label class="label">Estado</label>
+                <myselect selected="formData.estado" data="estadosCollection" async="estados"></myselect>
+              </div>
+              <div class="field">
+                <button class="ui darkred submit button" ng-class="CmdSave ? '' : 'disabled' "><i class="send outline icon"></i>Crear</button>
+                <div class="ui button" ng-class="CmdUpdate ? 'positive' : 'disabled' " ng-click="update()">
+                  <i class="refresh icon"></i>
+                  Actualizar
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+</div>
+<div class="column">
+<div class="ui transparent input fluid">
+  <input type="text" ng-model="txtSearch.$" placeholder="Escriba un termino de busqueda...">
+</div>
+  <table class="ui very basic table" >
+    <thead>
+      <tr>
+        <th><i class="legal icon"></i>Derecho</th>
+        <th><i class="cube icon"></i>Estado</th>
+        <th><i class="edit icon"></i>Edición</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="derecho in derechos | filter:txtSearch"  ng-class="{selected: derecho._id === idSelectedRow}" ng-click="editRow(derecho)" >
+        <td>{{derecho.derecho}}</td>
+        <td>{{derecho.estado['descripcion']}}</td>
+        <td>
+          <div ng-click="removeRow(derecho._id)" class="ui darkred icon button" style="padding:0.4em;">
+              <i class="trash icon"></i>
+          </div>
+          <div ng-click="editRow(derecho)" class="ui teal icon button" style="padding:0.4em;">
+              <i class="edit icon"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<myconfirm show="showModal" title="Eliminar Item" message="¿ desea eliminar este derecho ?"></myconfirm>
